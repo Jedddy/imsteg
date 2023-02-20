@@ -1,0 +1,8 @@
+# Venv
+.venv
+
+# Cache
+__pycache__
+
+# Misc
+test.py
