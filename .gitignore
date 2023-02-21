@@ -4,5 +4,6 @@
 # Cache
 __pycache__
 
-# Misc
+# Tests
 test.py
+.tmpdr
