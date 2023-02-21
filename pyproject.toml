@@ -1,8 +1,3 @@
-[tool.poetry]
-name = "imsteg"
-description = "An simple tool used for image steganography"
-readme = "README.md"
-
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
