@@ -15,8 +15,7 @@ class StegCodec:
         text_data: list[str]
     ) -> Generator[np.ndarray, None, None]:
         for i in range(len(text_data)):
-            pixels = np.array(next(data) + next(data) + next(data))
-
+            pixels = np.array(next(data)[:3] + next(data)[:3] + next(data)[:3])
             bit_array = np.array([*map(int, text_data[i] + "0")])
             res = np.abs(pixels - ((pixels % 2) ^ bit_array))
             yield from res.reshape(3, 3)
@@ -46,6 +45,9 @@ class StegCodec:
         with Image.open(image) as img:  # type: ignore
             new_image = img.copy()
             data = iter(img.getdata())
+
+        if len(text_data) > len(list(new_image.getdata())) // 3:
+            raise ValueError("The image is too small for the text!")
 
         img_width, _ = new_image.size
         x, y = 0, 0
@@ -95,9 +97,9 @@ class StegCodec:
 
         while True:
             flattened = np.array(
-                next(iter_data)
-                + next(iter_data)
-                + next(iter_data)
+                next(iter_data)[:3]
+                + next(iter_data)[:3]
+                + next(iter_data)[:3]
             )
 
             bin_txt = ""
