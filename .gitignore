@@ -2,8 +2,12 @@
 .venv
 
 # Cache
-__pycache__
+*.py[cod]
 
 # Tests
 test.py
 .tmpdr
+
+# Others
+*.egg-info
+dist
